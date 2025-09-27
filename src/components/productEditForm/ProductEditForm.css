@@ -1,0 +1,56 @@
+/* src/components/ProductEditForm.css */
+
+/* Estilos gerais do formulário */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo das labels e inputs */
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
+  /* Estilo do botão de atualizar */
+  .button-atualizar {
+    background-color: #28a745; /* Cor verde */
+    color: white; /* Cor do texto em branco */
+    border: none; /* Remove a borda */
+    padding: 10px 20px; /* Ajuste o espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Aponta o cursor para o botão */
+    border-radius: 5px; /* Cantos arredondados */
+    transition: background-color 0.3s ease; /* Transição suave para a cor */
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+  }
+  
+  .button-atualizar:hover {
+    background-color: #218838; /* Cor verde mais escura ao passar o mouse */
+  }
+  

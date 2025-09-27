@@ -1,0 +1,144 @@
+/* src/components/CardAdd.css */
+
+.card-add-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f6f6f6;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+input[type="file"] {
+  padding: 10px;
+}
+
+/* Estilizando as mensagens de erro e sucesso */
+.error-message {
+  color: #d9534f;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.success-message {
+  color: #5bc0de;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20px; /* Reduz o tamanho do título em telas menores */
+  }
+
+  .product-form {
+    padding: 15px; /* Reduz o preenchimento para dispositivos móveis */
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select,
+  input[type="file"],
+  button {
+    font-size: 14px; /* Reduz o tamanho da fonte nos campos de input e botão */
+    padding: 8px; /* Diminui o preenchimento nos campos de input e botão */
+  }
+
+  button {
+    width: 100%; /* Faz o botão preencher toda a largura disponível */
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20px; /* Reduz o tamanho do título em telas menores */
+  }
+
+  .product-form {
+    padding: 15px; /* Reduz o preenchimento para dispositivos móveis */
+    margin: 0 10px; /* Adiciona mais margem nas laterais para não encostar nas bordas */
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select,
+  input[type="file"],
+  button {
+    font-size: 14px; /* Reduz o tamanho da fonte nos campos de input e botão */
+    padding: 8px; /* Diminui o preenchimento nos campos de input e botão */
+  }
+
+  button {
+    width: 100%; /* Faz o botão preencher toda a largura disponível */
+  }
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 18px; /* Tamanho do título ainda menor em dispositivos muito pequenos */
+  }
+
+  .product-form {
+    padding: 10px; /* Reduz ainda mais o padding */
+    margin: 0 15px; /* Adiciona margem nas laterais para melhorar a responsividade */
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select,
+  input[type="file"],
+  button {
+    font-size: 12px; /* Fontes ainda menores em telas pequenas */
+    padding: 6px; /* Diminui o padding para ajustar melhor em telas pequenas */
+  }
+
+  button {
+    width: 100%; /* Garante que o botão ocupe toda a largura da tela */
+  }
+}

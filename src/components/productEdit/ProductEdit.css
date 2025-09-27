@@ -1,0 +1,132 @@
+/* Contêiner principal */
+.container {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Botão Home */
+  .botao-home {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: #6b3624;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botao-home:hover {
+    background-color: #8c5a4d;
+  }
+  
+  /* Input de filtro */
+  .filtro-input {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Botões de categorias */
+  .botoes-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .botao-categoria {
+    padding: 10px 15px;
+    background-color: #6b3624;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botao-categoria:hover {
+    background-color: #8c5a4d;
+  }
+  
+  .limpar-filtro {
+    background-color: #d9534f;
+  }
+  
+  .limpar-filtro:hover {
+    background-color: #c9302c;
+  }
+  
+  /* Título da categoria */
+  .categoria-titulo {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    color: #6b3624;
+    background-color: #f6f3ee;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: fit-content;
+    padding: 5px 20px;
+    margin: 20px auto;
+  }
+  
+  /* Estilo dos produtos */
+  .produtos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+
+
+  .produto-info {
+    padding: 15px;
+  }
+  
+
+
+  
+  /* Botão Atualizar Produto */
+  .botao-atualizar {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botao-atualizar:hover {
+    background-color: #128c7e;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 900px) {
+    .produtos-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .produto-card {
+      width: 90%;
+    }
+  }
+  

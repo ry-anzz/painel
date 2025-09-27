@@ -1,0 +1,187 @@
+.container-banner {
+  margin-top: 50px;
+}
+
+.produtos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.categoria-titulo {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  color: #6b3624;
+  background-color: #f6f3ee;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  width: fit-content;
+  padding: 5px 20px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.produto-card h3 {
+  font-size: 1.5rem;
+  color: #6b3624;
+  margin: 10px 0;
+}
+
+.produto-card p {
+  font-size: 1.25rem;
+  color: #e67e22;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.produto-info {
+  padding: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  background-color: #6b3624;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+}
+
+button:hover {
+  background-color: #8c5a4d;
+}
+
+button:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+button#enviar-whatsapp {
+  background-color: #25d366;
+}
+
+button#enviar-whatsapp:hover {
+  background-color: #128c7e;
+}
+
+button:focus {
+  outline: none;
+}
+
+input {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .produtos-container {
+    justify-content: space-around;
+  }
+  .produto-card {
+    width: 48%; /* Two products per row */
+  }
+}
+
+@media (max-width: 900px) {
+  .produto-card {
+    width: 100%; /* Full width for product cards on smaller screens */
+  }
+
+  .categoria-titulo {
+    font-size: 1.25em; /* Slightly smaller title */
+    margin-top: 20px; /* Adjust space above title */
+  }
+
+  input {
+    width: 80%; /* Slightly smaller input field */
+  }
+
+  button {
+    font-size: 0.9em; /* Smaller buttons on mobile */
+  }
+
+  .container-banner {
+    margin-top: 20px; /* Reduce top margin */
+  }
+
+  /* Stack the category filter buttons vertically */
+  .produtos-container {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  input {
+    width: 100%; /* Full width input on mobile */
+  }
+
+  .produtos-container {
+    flex-direction: column; /* Stack cards vertically on very small screens */
+    align-items: center;
+  }
+
+  button {
+    width: 100%; /* Make buttons full-width on small screens */
+  }
+
+  .categoria-titulo {
+    font-size: 1.1em; /* Smaller category titles for mobile */
+  }
+}
+
+
+/* Estilos gerais para os botões */
+div button {
+  padding: 10px 15px;
+  background-color: #6b3624;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+}
+
+div button:hover {
+  background-color: #8c5a4d;
+}
+
+div button:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 1200px) {
+  /* Ajusta o layout dos botões para quebra de linha */
+  .button-div {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os botões quebrem para a linha seguinte */
+    justify-content: center; /* Garante que os botões fiquem centralizados */
+    gap: 10px; /* Espaçamento entre os botões */
+  }
+
+  /* Ajuste de largura dos botões */
+  div button {
+    flex: 1 1 45%; /* Cada botão ocupará no máximo 45% do espaço disponível, com flexibilidade para ajustar */
+    max-width: 200px; /* Limita a largura máxima do botão */
+  }
+}
+
+/* Estilo adicional para telas muito pequenas */
+@media (max-width: 500px) {
+  div button {
+    font-size: 0.9em;  /* Ajusta o tamanho da fonte */
+    padding: 8px 12px;  /* Ajusta o padding para telas menores */
+  }
+}
