@@ -1,121 +1,149 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import supabase from '../../supabaseClient';
-import './ProductList.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import supabase from "../../supabaseClient";
+import "./ProductList.css"; // Certifique-se que este ficheiro existe e tem o nome correto
 
-const ProductList = ({ adicionarAoCarrinho }) => {
+const ProductList = () => {
   const [produtos, setProdutos] = useState([]);
   const [carregando, setCarregando] = useState(true);
-  const [filtro, setFiltro] = useState('');
-  const [categoriaFiltro, setCategoriaFiltro] = useState(''); // Valor pré-definido como vazio
+  const [filtro, setFiltro] = useState("");
+  const [categoriaFiltro, setCategoriaFiltro] = useState(""); // Começa vazio para mostrar tudo
   const navigate = useNavigate();
+
+  // Lista de todas as categorias possíveis para os botões de filtro
+  const todasAsCategorias = [
+    "DESTILADOS",
+    "LICOR",
+    "CACHAÇA",
+    "CERVEJA",
+    "ENERGETICOS",
+    "VINHO",
+    "WHISKYS",
+    "ESPECIARIAS",
+    "FARDO-GELADO",
+    "FARDO-QUENTE",
+    "BEBIDAS NAO ALCOÓLICAS",
+    "MERCEARIA",
+    "PADARIA",
+    "FRIOS E LATICINIOS",
+    "DOCES",
+    "DOCES E BISCOITOS",
+    "BISCOITOS SALGADOS",
+    "HIGIENE",
+    "LIMPEZA",
+    "ESPUMANTES",
+    "GELO",
+    "SORVETES",
+    "CIGARROS",
+    "CONGELADOS",
+    "KITSEPROMOCOES",
+    "PROMOÇÕES E BEBIDAS",
+    "PETSHOP",
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await supabase.from('produtos').select('*');
+        setCarregando(true);
+        let query = supabase.from("produtos").select("*");
+
+        // Se uma categoria específica for selecionada, filtra no banco de dados
+        if (categoriaFiltro) {
+          query = query.eq("category", categoriaFiltro);
+        }
+
+        const { data, error } = await query;
+
+        console.log("Dados recebidos do Supabase:", data); // Linha de diagnóstico
+
         if (error) throw new Error(error.message);
-        setProdutos(data);
+        setProdutos(data || []);
       } catch (error) {
-        console.error('Erro ao carregar os produtos:', error);
+        console.error("Erro ao carregar os produtos:", error);
       } finally {
         setCarregando(false);
       }
     };
     fetchData();
-  }, []);
- 
-  const produtosFiltrados = produtos.filter(produto => {
-    const matchesName = produto.name.toLowerCase().includes(filtro.toLowerCase());
-    const matchesCategoria = categoriaFiltro ? produto.category.toLowerCase() === categoriaFiltro.toLowerCase() : true;
-    return matchesName && matchesCategoria;
-  });
+  }, [categoriaFiltro]); // A busca é refeita sempre que o filtro de categoria muda
+  // A filtragem por nome agora é feita na lista que já veio do Supabase
+  const produtosFiltrados = produtos.filter((produto) =>
+    produto.name.toLowerCase().includes(filtro.toLowerCase())
+  );
 
-  const categorias = produtosFiltrados.reduce((acc, produto) => {
-    if (!acc[produto.category]) acc[produto.category] = [];
-    acc[produto.category].push(produto);
-    return acc;
-  }, {}); 
-
-  
   const handleCategoriaFiltro = (categoria) => {
-    setCategoriaFiltro(categoria);
+    // Se clicar na mesma categoria, limpa o filtro. Senão, define o novo filtro.
+    setCategoriaFiltro((prevFiltro) =>
+      prevFiltro === categoria ? "" : categoria
+    );
   };
 
   return (
-    <div className="container-banner">
-      <button onClick={() => navigate('/')}>
-        Voltar para Home
-      </button>
-
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+    <div className="product-list-container">
+      <h1>Lista de Todos os Produtos</h1>     {" "}
+      <button onClick={() => navigate("/")}>Voltar para Home</button>     {" "}
+      <div className="search-and-filter-container">
+               {" "}
         <input
           type="text"
-          placeholder="Filtrar produtos..."
+          placeholder="Filtrar produtos por nome..."
           value={filtro}
           onChange={(e) => setFiltro(e.target.value)}
-          style={{
-            width: '50%',
-            padding: '10px',
-            borderRadius: '5px',
-            border: '1px solid #ccc',
-          }}
+          className="filter-input"
         />
+               {" "}
+        <div className="category-buttons-wrapper">
+          {/* Botão para limpar o filtro e mostrar tudo */}
+          <button
+            className={`category-button ${
+              categoriaFiltro === "" ? "active" : ""
+            }`}
+            onClick={() => handleCategoriaFiltro("")}
+          >
+            Todas as Categorias
+          </button>
+          {todasAsCategorias.map((categoria) => (
+            <button
+              key={categoria}
+              className={`category-button ${
+                categoriaFiltro === categoria ? "active" : ""
+              }`}
+              onClick={() => handleCategoriaFiltro(categoria)}
+            >
+              {categoria.replace("-", " ").replace("E", " & ")}
+            </button>
+          ))}
+                 {" "}
+        </div>
       </div>
-      <div className='button-div' style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px' }}>
-
-<button onClick={() => handleCategoriaFiltro('DESTILADOS')}>Destilados</button>
-<button onClick={() => handleCategoriaFiltro('LICOR')}>Licor</button>
-<button onClick={() => handleCategoriaFiltro('CACHAÇA')}>Cachaça</button>
-<button onClick={() => handleCategoriaFiltro('CERVEJA')}>Cervejas</button>
-<button onClick={() => handleCategoriaFiltro('ENERGETICOS')}>Energéticos</button>
-<button onClick={() => handleCategoriaFiltro('VINHO')}>Vinhos</button>
-<button onClick={() => handleCategoriaFiltro('WHISKYS')}>Whiskys</button>
-<button onClick={() => handleCategoriaFiltro('ESPECIARIAS')}>Especiarias</button>
-<button onClick={() => handleCategoriaFiltro('FARDO-GELADO')}>Fardo Gelado</button>
-<button onClick={() => handleCategoriaFiltro('FARDO-QUENTE')}>Fardo Quente</button>
-<button onClick={() => handleCategoriaFiltro('BEBIDAS NAO ALCOÓLICAS')}>Bebidas Não Alcoólicas</button>
-<button onClick={() => handleCategoriaFiltro('MERCEARIA')}>Mercearia</button>
-<button onClick={() => handleCategoriaFiltro('PADARIA')}>Padaria</button>
-<button onClick={() => handleCategoriaFiltro('FRIOS E LATICINIOS')}>Frios & Laticinios</button>
-<button onClick={() => handleCategoriaFiltro('DOCES')}>Doces</button>
-<button onClick={() => handleCategoriaFiltro('DOCES E BISCOITOS')}>Biscoitos Doces</button>
-<button onClick={() => handleCategoriaFiltro('BISCOITOS SALGADOS')}>Biscoitos Salgados</button>
-<button onClick={() => handleCategoriaFiltro('HIGIENE E LIMPEZA')}>Higiene & Limpeza</button> {/* --TIRAR */}
-<button onClick={() => handleCategoriaFiltro('HIGIENE')}>Higiene</button>
-<button onClick={() => handleCategoriaFiltro('LIMPEZA')}>Limpeza</button>
-<button onClick={() => handleCategoriaFiltro('ESPUMANTES')}>Espumantes</button>
-<button onClick={() => handleCategoriaFiltro('GELO')}>Gelos</button>
-<button onClick={() => handleCategoriaFiltro('SORVETES')}>Sorvetes</button>
-<button onClick={() => handleCategoriaFiltro('CIGARROS')}>Cigarros</button>
-<button onClick={() => handleCategoriaFiltro('CONGELADOS')}>Congelados</button>
-<button onClick={() => handleCategoriaFiltro('KITSEPROMOCOES')}>Kits e Promoções</button>
-<button onClick={() => handleCategoriaFiltro('PROMOCÕES E BEBIDAS')}>Promoções e Bebidas</button>
-<button onClick={() => handleCategoriaFiltro('PETSHOP')}>Petshop</button>
-      </div>
-
+           {" "}
       {carregando ? (
-        <p>Carregando produtos...</p>
-      ) : Object.keys(categorias).length > 0 ? (
-        Object.keys(categorias).map((categoria) => (
-          <div className='protudosCards' key={categoria} style={{ textAlign: 'center' }}>
-            <h2 className="categoria-titulo">{categoria}</h2>
-            <div className="produtos-container">
-              {categorias[categoria].map((produto, index) => (
-                <div className="produto-card" key={index}>
-                  <img className="produto-imagem" src={produto.imagem_url} alt={produto.name} />
-                  <div className="produto-info">
-                    <h3>{produto.name}</h3>
-                    <p>Preço: R${parseFloat(produto.price).toFixed(2)}</p>
-                  </div>
-                </div>
-              ))}
+        <p>A carregar produtos...</p>
+      ) : produtosFiltrados.length > 0 ? (
+        <div className="produtos-grid">
+          {produtosFiltrados.map((produto) => (
+            <div className="produto-card" key={produto.id}>
+              <img
+                className="produto-imagem"
+                src={produto.imagem_url}
+                alt={produto.name}
+              />
+              <div className="produto-info">
+                <h3>{produto.name}</h3>
+                <p className="produto-categoria">
+                  Categoria: {produto.category}
+                </p>
+                <p className="produto-preco">
+                  Preço: R${parseFloat(produto.price).toFixed(2)}
+                </p>
+              </div>
             </div>
-          </div>
-        ))
+          ))}
+        </div>
       ) : (
-        <p>Nenhum produto encontrado.</p>
+        <p>Nenhum produto encontrado com os filtros atuais.</p>
       )}
+         {" "}
     </div>
   );
 };

@@ -1,132 +1,199 @@
-/* Contêiner principal */
-.container {
-    margin: 20px auto;
-    max-width: 1200px;
-    padding: 20px;
-    text-align: center;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Botão Home */
-  .botao-home {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    background-color: #6b3624;
+/* --- Layout Geral do Painel --- */
+.admin-layout {
+  display: flex;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+}
+
+/* --- Barra Lateral (Sidebar) --- */
+.admin-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background-color: #ffffff;
+  padding: 25px;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+.admin-sidebar h2, .admin-sidebar h3 {
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.filtro-input-sidebar {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+.botoes-categorias {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+}
+.botao-categoria {
+  width: 100%;
+  padding: 10px;
+  background-color: #6b3624;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+.botao-categoria:hover {
+  background-color: #e0e0e0;
+  border-color: #ccc;
+}
+.botao-categoria.active {
+  background-color: #722308;
+  color: white;
+  border-color: #6b3624;
+  font-weight: bold;
+}
+.botao-home {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    padding: 12px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-  }
-  
-  .botao-home:hover {
-    background-color: #8c5a4d;
-  }
-  
-  /* Input de filtro */
-  .filtro-input {
-    width: 80%;
-    max-width: 400px;
-    padding: 10px;
-    margin: 20px auto;
-    border: 1px solid #ccc;
+}
+
+/* --- Conteúdo Principal --- */
+.admin-main-content {
+  flex-grow: 1;
+  padding: 30px;
+}
+.admin-main-content h1 {
+  color: #333;
+  margin-top: 0;
+}
+
+/* --- Grelha de Produtos --- */
+.produtos-grid-admin {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+.produto-card-admin {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.produto-card-admin:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.produto-imagem-admin {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  padding: 15px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f0f0f0;
+}
+.produto-info-admin {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.produto-info-admin h3 {
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
+  flex-grow: 1;
+}
+.produto-categoria-admin {
+    font-size: 0.8rem;
+    color: #888;
+    background-color: #f0f0f0;
+    padding: 3px 8px;
     border-radius: 5px;
-    font-size: 1rem;
+    display: inline-block;
+    margin: 0 0 10px 0;
+    align-self: flex-start;
+}
+.produto-preco-admin {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #6b3624;
+  margin: 0 0 15px 0;
+}
+.botao-atualizar {
+  padding: 12px;
+  background-color: #6b3624;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.botao-atualizar:hover {
+  background-color: #8c5a4d;
+}
+
+/* Mensagem de Carregamento */
+.loading-message {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+/* =========================================== */
+/* --- RESPONSIVIDADE PARA ECRÃS MENORES --- */
+/* =========================================== */
+@media (max-width: 900px) {
+  .admin-layout {
+    /* Altera o layout de colunas lado a lado para uma única coluna */
+    flex-direction: column;
   }
-  
-  /* Botões de categorias */
+
+  .admin-sidebar {
+    /* A barra lateral agora ocupa a largura total e fica no topo */
+    width: 100%;
+    position: static;
+    height: auto;
+    box-shadow: none;
+    border-bottom: 1px solid #eee;
+    overflow-y: visible;
+  }
+
   .botoes-categorias {
-    display: flex;
+    /* Os botões de categoria agora ficam em linha e quebram se não couberem */
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
   }
   
   .botao-categoria {
-    padding: 10px 15px;
-    background-color: #6b3624;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    /* O botão ajusta a sua largura ao conteúdo */
+    width: auto;
   }
-  
-  .botao-categoria:hover {
-    background-color: #8c5a4d;
-  }
-  
-  .limpar-filtro {
-    background-color: #d9534f;
-  }
-  
-  .limpar-filtro:hover {
-    background-color: #c9302c;
-  }
-  
-  /* Título da categoria */
-  .categoria-titulo {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-align: center;
-    color: #6b3624;
-    background-color: #f6f3ee;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-    width: fit-content;
-    padding: 5px 20px;
-    margin: 20px auto;
-  }
-  
-  /* Estilo dos produtos */
-  .produtos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
 
+  .admin-main-content {
+    padding: 20px;
+  }
 
-  .produto-info {
-    padding: 15px;
+  .admin-main-content h1 {
+    font-size: 1.8rem;
   }
-  
-
-
-  
-  /* Botão Atualizar Produto */
-  .botao-atualizar {
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #25d366;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-  }
-  
-  .botao-atualizar:hover {
-    background-color: #128c7e;
-  }
-  
-  /* Responsividade */
-  @media (max-width: 900px) {
-    .produtos-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .produto-card {
-      width: 90%;
-    }
-  }
-  
+}

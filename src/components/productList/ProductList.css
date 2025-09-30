@@ -1,187 +1,130 @@
-.container-banner {
-  margin-top: 50px;
+/* --- Estilos Gerais da Página --- */
+.product-list-container {
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
 }
 
-.produtos-container {
+.product-list-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* --- Container de Filtros e Busca --- */
+.search-and-filter-container {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin-bottom: 40px;
+}
+
+.filter-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.category-buttons-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
-.categoria-titulo {
-  font-size: 1.5em;
+.category-button {
+  background-color: #6b3624;
+  color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+
+.category-button:hover {
+  background-color: #e0e0e0;
+  border-color: #ccc;
+}
+
+.category-button.active {
+  background-color: #76270c;
+  color: #ffffff;
+  border-color: #6b3624;
   font-weight: bold;
-  text-align: center;
-  color: #6b3624;
-  background-color: #f6f3ee;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  width: fit-content;
-  padding: 5px 20px;
-  margin-top: 30px;
-  margin-bottom: 15px;
 }
 
-.produto-card h3 {
-  font-size: 1.5rem;
-  color: #6b3624;
-  margin: 10px 0;
+/* --- Grelha de Produtos --- */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
 }
 
-.produto-card p {
-  font-size: 1.25rem;
-  color: #e67e22;
-  font-weight: bold;
-  margin-top: 5px;
+/* --- Cartão de Produto --- */
+.produto-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.produto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.produto-imagem {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  padding: 15px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .produto-info {
-  padding: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-button {
-  padding: 10px 15px;
-  margin-top: 10px;
-  background-color: #6b3624;
-  color: white;
-  border: none;
+.produto-info h3 {
+  font-size: 1.2rem;
+  margin: 0 0 10px 0;
+  color: #333;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.produto-categoria {
+  font-size: 0.8rem;
+  color: #888;
+  background-color: #f0f0f0;
+  padding: 3px 8px;
   border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s, transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+  display: inline-block;
+  margin: 0 0 10px 0;
+  align-self: flex-start;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-button:hover {
-  background-color: #8c5a4d;
-}
-
-button:active {
-  transform: scale(0.95);
-  opacity: 0.8;
-}
-
-button#enviar-whatsapp {
-  background-color: #25d366;
-}
-
-button#enviar-whatsapp:hover {
-  background-color: #128c7e;
-}
-
-button:focus {
-  outline: none;
-}
-
-input {
-  margin-bottom: 20px;
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-@media (max-width: 1200px) {
-  .produtos-container {
-    justify-content: space-around;
-  }
-  .produto-card {
-    width: 48%; /* Two products per row */
-  }
-}
-
-@media (max-width: 900px) {
-  .produto-card {
-    width: 100%; /* Full width for product cards on smaller screens */
-  }
-
-  .categoria-titulo {
-    font-size: 1.25em; /* Slightly smaller title */
-    margin-top: 20px; /* Adjust space above title */
-  }
-
-  input {
-    width: 80%; /* Slightly smaller input field */
-  }
-
-  button {
-    font-size: 0.9em; /* Smaller buttons on mobile */
-  }
-
-  .container-banner {
-    margin-top: 20px; /* Reduce top margin */
-  }
-
-  /* Stack the category filter buttons vertically */
-  .produtos-container {
-    gap: 15px;
-  }
-}
-
-@media (max-width: 600px) {
-  input {
-    width: 100%; /* Full width input on mobile */
-  }
-
-  .produtos-container {
-    flex-direction: column; /* Stack cards vertically on very small screens */
-    align-items: center;
-  }
-
-  button {
-    width: 100%; /* Make buttons full-width on small screens */
-  }
-
-  .categoria-titulo {
-    font-size: 1.1em; /* Smaller category titles for mobile */
-  }
-}
-
-
-/* Estilos gerais para os botões */
-div button {
-  padding: 10px 15px;
-  background-color: #6b3624;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s, transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
-}
-
-div button:hover {
-  background-color: #8c5a4d;
-}
-
-div button:active {
-  transform: scale(0.95);
-  opacity: 0.8;
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 1200px) {
-  /* Ajusta o layout dos botões para quebra de linha */
-  .button-div {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os botões quebrem para a linha seguinte */
-    justify-content: center; /* Garante que os botões fiquem centralizados */
-    gap: 10px; /* Espaçamento entre os botões */
-  }
-
-  /* Ajuste de largura dos botões */
-  div button {
-    flex: 1 1 45%; /* Cada botão ocupará no máximo 45% do espaço disponível, com flexibilidade para ajustar */
-    max-width: 200px; /* Limita a largura máxima do botão */
-  }
-}
-
-/* Estilo adicional para telas muito pequenas */
-@media (max-width: 500px) {
-  div button {
-    font-size: 0.9em;  /* Ajusta o tamanho da fonte */
-    padding: 8px 12px;  /* Ajusta o padding para telas menores */
-  }
+.produto-preco {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #6b3624;
+  margin: 10px 0 0 0;
+  align-self: flex-end;
 }
