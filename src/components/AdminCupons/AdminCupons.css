@@ -1,0 +1,130 @@
+.admin-page-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.admin-header button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.feedback-message {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.feedback-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.feedback-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.admin-content-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.form-section, .list-section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.coupon-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.coupon-form input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.coupon-form button {
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.coupons-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.coupons-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.coupons-list li:last-child {
+    border-bottom: none;
+}
+.coupon-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.coupon-code {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}
+.coupon-value {
+    background-color: #f0f0f0;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .admin-content-layout {
+        grid-template-columns: 1fr;
+    }
+}

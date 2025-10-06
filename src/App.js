@@ -7,6 +7,8 @@ import ProductDelete from './components/productDelete/ProductDelete';
 import ProductEdit from './components/productEdit/ProductEdit'; // Componente de edição
 import ProductEditForm from './components/productEditForm/ProductEditForm';
 import Imprimi from './components/imprimi/Imprimi';
+import AdminCupons from './components/AdminCupons/AdminCupons';
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route path="/modificar/:id" element={<ProductEditForm />} /> {/* Formulário de edição */}
           <Route path="/atualizar" element={<ProductEdit />} /> {/* Lista com filtro e atualização */}
           <Route path='/imprimir' element={<Imprimi></Imprimi>}></Route>
+          <Route path='/cupons' element={<AdminCupons></AdminCupons>}></Route>
         </Routes>
       </div>
     </BrowserRouter>
