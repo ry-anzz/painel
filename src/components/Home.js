@@ -37,6 +37,7 @@ const Home = () => {
         <button className="nav-button" onClick={() => navigate('/atualizar')}>Atualizar Produto</button>
         <button className="nav-button" onClick={() => navigate('/imprimir')}>Imprimir</button>
         <button className="nav-button" onClick={() => navigate('/cupons')}>Cupom</button>
+        <button className="nav-button" onClick={() => navigate('/ofertas')}>Ofertas</button>
       </div>
 
       {/* Botão para redirecionar para o site */}

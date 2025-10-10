@@ -8,6 +8,7 @@ import ProductEdit from './components/productEdit/ProductEdit'; // Componente de
 import ProductEditForm from './components/productEditForm/ProductEditForm';
 import Imprimi from './components/imprimi/Imprimi';
 import AdminCupons from './components/AdminCupons/AdminCupons';
+import AdminOfertas from './components/AdminOfertas/AdminOfertas';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/atualizar" element={<ProductEdit />} /> {/* Lista com filtro e atualização */}
           <Route path='/imprimir' element={<Imprimi></Imprimi>}></Route>
           <Route path='/cupons' element={<AdminCupons></AdminCupons>}></Route>
+            <Route path="/ofertas" element={<AdminOfertas />} /> 
         </Routes>
       </div>
     </BrowserRouter>
