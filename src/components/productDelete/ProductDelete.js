@@ -165,10 +165,9 @@ const ProductDelete = () => {
                   className="produto-imagem-admin"
                   src={produto.imagem_url}
                   alt={produto.name}
-                />
-               {" "}
+                />{" "}
                 <div className="produto-info-admin">
-                 <h3>{produto.name}</h3>{" "}
+                  <h3>{produto.name}</h3>{" "}
                   <p className="produto-categoria-admin">{produto.category}</p> 
                                  {" "}
                   <p className="produto-preco-admin">
@@ -180,7 +179,7 @@ const ProductDelete = () => {
                     onClick={() => deletarProduto(produto.id, produto.name)}
                     className="botao-excluir"
                   >
-                    Excluir Produto {" "}
+                    Excluir Produto{" "}
                   </button>
                                  {" "}
                 </div>
