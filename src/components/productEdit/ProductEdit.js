@@ -11,16 +11,20 @@ const ProductEdit = () => {
   const navigate = useNavigate(); // 1. A SUA LISTA DE CATEGORIAS FIXA (DO MODELO CORRETO)
 
   const todasAsCategorias = [
-    "DESTILADOS",
+  "DESTILADOS",
     "LICOR",
     "CACHAÇA",
     "CERVEJA",
     "ENERGETICOS",
     "VINHO",
     "WHISKYS",
+    "VODKAS",
     "ESPECIARIAS",
     "FARDO-GELADO",
     "FARDO-QUENTE",
+    "REFRIGERANTES",
+    "SUCOS",
+    "AGUA",
     "BEBIDAS NAO ALCOÓLICAS",
     "MERCEARIA",
     "PADARIA",
