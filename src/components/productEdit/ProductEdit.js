@@ -7,28 +7,52 @@ const ProductEdit = () => {
   const [produtos, setProdutos] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [filtro, setFiltro] = useState("");
-  const [categoriaFiltro, setCategoriaFiltro] = useState("");
-  const navigate = useNavigate();
+  const [categoriaFiltro, setCategoriaFiltro] = useState(""); // Começa vazio para mostrar tudo
+  const navigate = useNavigate(); // 1. A SUA LISTA DE CATEGORIAS FIXA (DO MODELO CORRETO)
 
-  // Estado para armazenar todas as categorias únicas
-  const [categorias, setCategorias] = useState([]);
+  const todasAsCategorias = [
+    "DESTILADOS",
+    "LICOR",
+    "CACHAÇA",
+    "CERVEJA",
+    "ENERGETICOS",
+    "VINHO",
+    "WHISKYS",
+    "ESPECIARIAS",
+    "FARDO-GELADO",
+    "FARDO-QUENTE",
+    "BEBIDAS NAO ALCOÓLICAS",
+    "MERCEARIA",
+    "PADARIA",
+    "FRIOS E LATICINIOS",
+    "DOCES",
+    "DOCES E BISCOITOS",
+    "BISCOITOS SALGADOS",
+    "HIGIENE",
+    "LIMPEZA",
+    "ESPUMANTES",
+    "GELO",
+    "SORVETES",
+    "CIGARROS",
+    "CONGELADOS",
+    "KITSEPROMOCOES",
+    "PROMOÇÕES E BEBIDAS",
+    "PETSHOP",
+  ]; // 2. O SEU USEEFFECT CORRETO (DO MODELO CORRETO)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await supabase
-          .from("produtos")
-          .select("*")
-          .order("name");
-        if (error) throw new Error(error.message);
-        if (data) {
-          setProdutos(data);
-          // Extrai e armazena as categorias únicas dos produtos carregados
-          const categoriasUnicas = [
-            ...new Set(data.map((p) => p.category)),
-          ].sort();
-          setCategorias(categoriasUnicas);
+        setCarregando(true);
+        let query = supabase.from("produtos").select("*"); // Se uma categoria específica for selecionada, filtra no banco de dados
+
+        if (categoriaFiltro) {
+          query = query.eq("category", categoriaFiltro);
         }
+
+        const { data, error } = await query.order("name");
+        if (error) throw new Error(error.message);
+        setProdutos(data || []);
       } catch (error) {
         console.error("Erro ao carregar os produtos:", error);
       } finally {
@@ -36,16 +60,17 @@ const ProductEdit = () => {
       }
     };
     fetchData();
-  }, []);
-  const produtosFiltrados = produtos.filter((produto) => {
-    const matchesName = produto.name
-      .toLowerCase()
-      .includes(filtro.toLowerCase());
-    const matchesCategoria = categoriaFiltro
-      ? produto.category === categoriaFiltro
-      : true;
-    return matchesName && matchesCategoria;
-  });
+  }, [categoriaFiltro]); // A busca é refeita sempre que o filtro de categoria muda // 3. O SEU FILTRO DE NOME CORRETO (DO MODELO CORRETO)
+
+  const produtosFiltrados = produtos.filter((produto) =>
+    produto.name.toLowerCase().includes(filtro.toLowerCase())
+  ); // 4. A SUA FUNÇÃO DE FILTRO CORRETA (DO MODELO CORRETO)
+
+  const handleCategoriaFiltro = (categoria) => {
+    setCategoriaFiltro((prevFiltro) =>
+      prevFiltro === categoria ? "" : categoria
+    );
+  };
 
   if (carregando) {
     return <p className="loading-message">A carregar produtos...</p>;
@@ -53,9 +78,10 @@ const ProductEdit = () => {
 
   return (
     <div className="admin-layout">
-      {/* --- Barra Lateral para Filtros --- */}
+            {/* --- Barra Lateral (O SEU LAYOUT ORIGINAL) --- */}     {" "}
       <aside className="admin-sidebar">
-        <h2>Filtros</h2>
+                <h2>Filtros</h2>
+               {" "}
         <input
           type="text"
           placeholder="Filtrar por nome..."
@@ -63,65 +89,81 @@ const ProductEdit = () => {
           onChange={(e) => setFiltro(e.target.value)}
           className="filtro-input-sidebar"
         />
-        <h3>Categorias</h3>
+                <h3>Categorias</h3>       {" "}
         <div className="botoes-categorias">
+                   {" "}
           <button
-            onClick={() => setCategoriaFiltro("")}
+            onClick={() => handleCategoriaFiltro("")}
             className={`botao-categoria ${
               categoriaFiltro === "" ? "active" : ""
             }`}
           >
-            Todas
+           Todas {" "}
           </button>
-          {categorias.map((categoria) => (
+          {/* 5. O MAP CORRIGIDO (DO MODELO CORRETO) */}{" "}
+          {todasAsCategorias.map((categoria) => (
             <button
               key={categoria}
-              onClick={() => setCategoriaFiltro(categoria)}
+              onClick={() => handleCategoriaFiltro(categoria)}
               className={`botao-categoria ${
                 categoriaFiltro === categoria ? "active" : ""
               }`}
             >
-              {categoria.replace("-", " ").replace("E", " & ")}
+             {" "}
+              {categoria.replace(/-/g, " ").replace(/\bE\b/g, " & ")}{" "}
             </button>
           ))}
+         {" "}
         </div>
+      {" "}
         <button onClick={() => navigate("/")} className="botao-home">
-          Voltar para Home
+         Voltar para Home {" "}
         </button>
+       {" "}
       </aside>
-
-      {/* --- Conteúdo Principal com a Grelha de Produtos --- */}
+       {/* --- Conteúdo Principal (O SEU LAYOUT ORIGINAL) --- */}{" "}
       <main className="admin-main-content">
-        <h1>Editar Produtos ({produtosFiltrados.length})</h1>
+       <h1>Editar Produtos ({produtosFiltrados.length})</h1>{" "}
         {produtosFiltrados.length > 0 ? (
           <div className="produtos-grid-admin">
+           {" "}
             {produtosFiltrados.map((produto) => (
               <div className="produto-card-admin" key={produto.id}>
+              {" "}
                 <img
                   className="produto-imagem-admin"
                   src={produto.imagem_url}
                   alt={produto.name}
                 />
+              {" "}
                 <div className="produto-info-admin">
-                  <h3>{produto.name}</h3>
-                  <p className="produto-categoria-admin">{produto.category}</p>
+                  <h3>{produto.name}</h3>{" "}
+                  <p className="produto-categoria-admin">{produto.category}</p> 
+                  {" "}
                   <p className="produto-preco-admin">
-                    R${produto.price.toFixed(2)}
+                   R${produto.price.toFixed(2)}
+                    {" "}
                   </p>
+                 {" "}
                   <button
                     onClick={() => navigate(`/modificar/${produto.id}`)}
                     className="botao-atualizar"
                   >
-                    Editar Produto
+                    Editar Produto {" "}
                   </button>
+                  {" "}
                 </div>
+                {" "}
               </div>
             ))}
+           {" "}
           </div>
         ) : (
           <p>Nenhum produto encontrado com os filtros atuais.</p>
         )}
+             {" "}
       </main>
+         {" "}
     </div>
   );
 };
