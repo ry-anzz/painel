@@ -109,9 +109,9 @@ const ProductDelete = () => {
 
   return (
     <div className="admin-layout">
-           {" "}
+      {" "}
       <aside className="admin-sidebar">
-                <h2>Filtros</h2>       {" "}
+        <h2>Filtros</h2>       {" "}
         <input
           type="text"
           placeholder="Filtrar por nome..."

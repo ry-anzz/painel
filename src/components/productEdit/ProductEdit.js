@@ -78,7 +78,7 @@ const ProductEdit = () => {
 
   return (
     <div className="admin-layout">
-            {/* --- Barra Lateral (O SEU LAYOUT ORIGINAL) --- */}     {" "}
+     {/* --- Barra Lateral (O SEU LAYOUT ORIGINAL) --- */}{" "}
       <aside className="admin-sidebar">
                 <h2>Filtros</h2>
                {" "}
