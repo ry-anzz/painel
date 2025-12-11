@@ -145,7 +145,7 @@ const CardAdd = () => {
               </option>
               <option value="REFRIGERANTES">Refrigerantes</option>
               <option value="AGUA">Águas</option>
-              <option value="SUCO">Sucos</option>
+              <option value="SUCOS">Sucos</option>
             </optgroup>
 
             {/* Mercearia e Alimentos */}
